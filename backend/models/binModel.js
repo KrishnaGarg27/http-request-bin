@@ -8,6 +8,7 @@ const binSchema = new mongoose.Schema({
   },
 });
 
+// Setting expiry on bin
 binSchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 });
 
 const Bin = mongoose.model("Bin", binSchema);

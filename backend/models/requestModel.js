@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
 
 const requestSchema = new mongoose.Schema({
-  binId: { type: mongoose.Schema.Types.ObjectId, ref: "Bin", required: true },
+  binDocumentId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Bin",
+    required: true,
+  },
   method: { type: String, required: true },
   header: { type: Object, required: true },
   query: { type: Object },
@@ -14,6 +18,7 @@ const requestSchema = new mongoose.Schema({
   },
 });
 
+// Setting expiry on requests
 requestSchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 });
 
 const Request = mongoose.model("Requests", requestSchema);
